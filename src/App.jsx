@@ -23,12 +23,16 @@ function App() {
     };
 
     return (
-        <div style={appStyle}>
+      <>
+ <div style={appStyle}>
             <div style={containerStyle}>
                 <Display />
                 <Buttons />
             </div>
         </div>
+        <a style={{position:"absolute", top:"5px", left:"5px", fontSize:"20px"}} href="https://github.com/Hamzaisongit/calculator" target="_blank">github link</a>
+      </>
+       
     );
 }
 

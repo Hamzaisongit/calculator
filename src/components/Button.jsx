@@ -1,8 +1,8 @@
 import React from "react";
 import { useDispatch } from "react-redux";
-import { eqlPressed, numberPressed, signPressed } from "../Store/Slice1";
+import { eqlPressed, numberPressed, signPressed, clrPressed } from "../Store/Slice1";
 
-export default function Button({ type, value }) {
+export default function Button({ type, value, symbol }) {
     const dispatch = useDispatch();
 
     const buttonStyle = {
@@ -20,14 +20,18 @@ export default function Button({ type, value }) {
 
     return (
         <button
+            id={value}
             style={buttonStyle}
             onClick={() => {
-                type === "number" 
-                    ? dispatch(numberPressed(value)) 
-                    : (type === "sign" ? dispatch(signPressed(value)) : dispatch(eqlPressed()));
+                type=="clr"
+                ?dispatch(clrPressed()):(
+                    type === "number" 
+                       ? dispatch(numberPressed(symbol)) 
+                         : (type === "sign" 
+                             ? dispatch(signPressed(symbol)) : dispatch(eqlPressed())));
             }}
         >
-            {value}
+            {symbol}
         </button>
     );
 }

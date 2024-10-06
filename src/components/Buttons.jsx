@@ -2,30 +2,51 @@ import React from "react";
 import Button from "./Button";
 
 export default function Buttons() {
-    const numbers = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
-    const signs = ['+', '-', '*', '/'];
+    const numbers = {
+        'zero':0,
+        'one':1,
+        'two':2,
+        'three':3,
+        'four':4,
+        'five':5,
+        'six':6,
+        'seven':7,
+        'eight':8,
+        'nine':9
+    }
 
-    const buttonContainerStyle = {
+    const signs = {
+        'add':'+',
+        'substract': '-',
+        'multiply':'*',
+        'divide':'/'
+    }
+
+    return (
+        <>
+            <div id="number-buttons" style={{
         display: 'flex',
         flexWrap: 'wrap',
         justifyContent: 'space-between',
         marginBottom: '20px'
-    };
-
-    return (
-        <>
-            <div id="number-buttons" style={buttonContainerStyle}>
-                {numbers.map((item, i) => (
-                    <Button key={`Element:${i}`} type="number" value={item} />
-                ))}
-                <Button type="number" value="." />
+    }}>
+                {Object.keys(numbers).map((item)=>{
+                   return <Button value={item} type="number" symbol={numbers[item]}></Button>
+                })}
+                <Button type="number" value="decimal" symbol='.' />
             </div>
 
-            <div id="sign-buttons" style={buttonContainerStyle}>
-                {signs.map((item, i) => (
-                    <Button key={`Sign:${i}`} type="sign" value={item} />
-                ))}
-                <Button type="eql" value="=" />
+            <div id="sign-buttons" style={{
+        display: 'flex',
+        flexWrap: 'wrap',
+        justifyContent: 'space-between',
+        marginBottom: '20px'
+    }}>
+                {Object.keys(signs).map((item)=>{
+                   return <Button value={item} type="sign" symbol={signs[item]}></Button>
+                })}
+                <Button value="equals" type="eql" symbol="=" />
+                <Button value="clear" type="clr" symbol="AC"></Button>
             </div>
 
             

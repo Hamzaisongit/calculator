@@ -16,18 +16,23 @@ export const mySlice = createSlice({
 
         const testExp = state.expression + action.payload
 
-        if(/^[^-\d][+\-*\/]|^[+*\/][-+*/]/.test(testExp.slice(0, 2))){
-            alert('init not allowed')
+        if(!(/^(-|[^+\-*\/])/.test(testExp))){
+            alert("this initial sequence isn't allowed")
             return;
-        }else if(/(\+\*|\+\/|\-\*|\-\/|\*\/|\/\*|\*\*|\/\/)/.test(testExp)){
-            state.expression = testExp.slice(0,-2) + action.payload
-            return;
-        }else if(/([+\-*/]{3})/.test(testExp)){
-            state.expression = testExp.slice(0,-3) + action.payload
         }else{
-            state.expression = testExp
+            if (!(/^[+\-*\/]{2}/.test(testExp))){
+            if(/(\+\*|\+\/|\-\*|\-\/|\*\/|\/\*|\*\*|\/\/)/.test(testExp)){
+                state.expression = testExp.slice(0,-2) + action.payload
+                return;
+            }else if(/([+\-*/]{3})/.test(testExp)){
+                state.expression = testExp.slice(0,-3) + action.payload
+            }else{
+                state.expression = testExp
+            }
+        }else{
+            alert("this initial sequence isn't allowed")
         }
-
+    }
     
         },
         eqlPressed : (state)=>{
